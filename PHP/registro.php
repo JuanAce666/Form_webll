@@ -15,12 +15,23 @@
     $password = $_REQUEST['password'];
     $claveHash = password_hash($password,PASSWORD_BCRYPT);
     
-    $sql = "INSERT INTO usuarios VALUES (null,'$correo',
-    '$claveHash')";
+   /* $sql = "INSERT INTO usuarios VALUES (null,'$correo',
+    '$claveHash')";*/
 
-    $conectar->query($sql);
+    $enviar = $conectar->prepare("INSERT INTO usuarios VALUES (null, ? , ? )");
 
-    header('Location: ../index.html')
+    $enviar->bindParam(1,$correo);
+    $enviar->bindParam(2,$claveHash);
+
+    $enviar->execute();
+
+
+    /*$conectar->query("INSERT INTO usuarios VALUES (null,
+    '$correo','$claveHash')");*/
+
+    //$conectar->query($sql);
+
+    header('Location: ../index.html')//es para enrutar 
 
     //echo "Correo: {$correo} <br> Contra: {$password}";
     
