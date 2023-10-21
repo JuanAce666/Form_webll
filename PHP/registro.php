@@ -31,7 +31,7 @@
 
     //$conectar->query($sql);
 
-    header('Location: ../index.html')//es para enrutar 
+    header('Location: ../index.php')//es para enrutar 
 
     //echo "Correo: {$correo} <br> Contra: {$password}";
     
